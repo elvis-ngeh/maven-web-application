@@ -26,6 +26,10 @@ stage('Upload to Nexus'){
         common("Upload to Nexus")
     }
 }
+stage ('5deploy2Dev'){
+    steps{
+        sh "echo 'test app on Devapptest' "
+        deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://10.0.1.133:8080/')], contextPath: null, war: 'target/*war'
 
 }
 }
