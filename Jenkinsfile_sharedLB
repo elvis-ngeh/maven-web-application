@@ -1,0 +1,31 @@
+@Library('JenkinssharedLibraries') _
+pipeline{
+  agent any 
+  tools {
+    maven "maven3.8.6"
+  }
+  stages{  
+    stage('1GetCode'){
+      steps{
+        sh "echo 'cloning the latest application version' "
+        git "https://github.com/elvis-ngeh/maven-web-application"
+      }
+    }
+  stage('Build'){
+  steps{
+      common("Build")
+  }
+}
+stage('SonarqubeReport'){
+    steps{
+        common("SonarqubeReport")
+    }
+}
+stage('Upload to Nexus'){
+    steps{
+        common("Upload to Nexus")
+    }
+}
+
+}
+}
