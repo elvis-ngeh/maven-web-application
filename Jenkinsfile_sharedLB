@@ -31,6 +31,13 @@ stage('5deploy2Dev'){
         sh "echo 'test app on Devapptest' "
         deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://10.0.1.148:8080/')], contextPath: null, war: 'target/*war'
 
+   }
+}
+stage ('6approvalGate'){
+    steps{
+       echo " 'ready for review' "
+       timeout(time:5, unit:'DAYS') {
+       input message: 'Application ready for deployment, Please review and approve'
 }
 }
 }
