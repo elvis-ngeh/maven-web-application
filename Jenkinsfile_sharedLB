@@ -18,12 +18,12 @@ pipeline{
 }
 stage('SonarqubeReport'){
     steps{
-        common("SonarReport")
+        common("SonarqubeReport")
     }
 }
 stage('Upload to Nexus'){
     steps{
-        common("Upload2Nexus")
+        common("Upload to Nexus")
     }
 }
 stage('UATtest'){
