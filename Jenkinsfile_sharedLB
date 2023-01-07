@@ -13,17 +13,17 @@ pipeline{
     }
   stage('Build'){
   steps{
-      common("Build")
+      stage("Build")
   }
 }
 stage('SonarqubeReport'){
     steps{
-        common("SonarqubeReport")
+        stage("SonarReport")
     }
 }
 stage('Upload to Nexus'){
     steps{
-        common("Upload to Nexus")
+        stage("Upload2Nexus")
     }
 }
 stage('UATtest'){
