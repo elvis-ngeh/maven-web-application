@@ -16,31 +16,3 @@ pipeline{
       common("Build")
   }
 }
-stage('SonarqubeReport'){
-    steps{
-        common("SonarqubeReport")
-    }
-}
-stage('Upload to Nexus'){
-    steps{
-        common("Upload to Nexus")
-    }
-}
-stage('UATtest'){
- steps{
- sh "echo 'running a UAT test now' "
- deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://10.0.1.148:8080/')], contextPath: null, war: 'target/*war'
- }
-}
-stage('ApprovalGate'){
- steps{
- sh "echo 'review and approve pls' "
- timeout(time: 5, unit: 'DAYS'){
- input message: 'pls review and approve, so we can proceed to prod'
- }
- } 
-}
-}
-
-}
-
