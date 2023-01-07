@@ -36,7 +36,7 @@ stage('ApprovalGate'){
  steps{
  sh "echo 'review and approve pls' "
  timeout(time: 5, unit: 'DAYS'){
- input messages : 'pls review and approve, so we can proceed to prod'
+ input message: 'pls review and approve, so we can proceed to prod'
  }
  } 
 }
